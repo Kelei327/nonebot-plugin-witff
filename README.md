@@ -16,23 +16,23 @@ When Is The FurryFusion? | 兽聚是什么时候? | 兽聚时间查询插件
 
 </div>
 
-### <del>初入茅庐高中牲,第一次使用Github/Pypi，如果有错误,还请谅解,请多多包容,非常感谢</del>
+### <del>第一次使用Github/Pypi，如果有错误,还请谅解,请多多包容,非常感谢</del>
 
-## 前文
+# 前文
 
-### 感谢<a href="https://github.com/Ekac00/nonebot-plugin-furryfusion/">✨ 兽聚动态 ✨</a>的启发
+### 感谢 <a href="https://github.com/Ekac00/nonebot-plugin-furryfusion/">✨ 兽聚动态 ✨</a>的启发
 
-### 感谢<a href="https://console-docs.apipost.cn/preview/fcba96ab381efa80/fdb51b00b68a9bbf?target_id=3a8b741e-9648-4469-8f47-98484378fdcf">兽云祭</a>所提供的API
+### 感谢 <a href="https://console-docs.apipost.cn/preview/fcba96ab381efa80/fdb51b00b68a9bbf?target_id=3a8b741e-9648-4469-8f47-98484378fdcf">兽云祭</a>所提供的API
 
-## 安装
+# 安装 & 使用
 
 ### [推荐] 使用nb命令安装
 
-nb plugin install nonebot_plugin_witff
+`nb plugin install nonebot_plugin_witff`
 
 ### Pip安装
 
- pip install nonebot-plugin-witff
+ `pip install nonebot-plugin-witff`
 
 ### 手动安装
 
@@ -53,7 +53,8 @@ plugins = ["nonebot_plugin_witff"]
 
 
 
-### Pending[高中学业忙，不定时更新]
+# 功能
  - [x] 分条发送
- - [x] 图片发送 <del>[也许?]</del>
- - [ ] 兽聚详细信息 [已废弃]
+ - [x] 文字转图片发送
+ - [ ] 兽聚详细信息
+
