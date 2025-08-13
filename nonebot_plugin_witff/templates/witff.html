@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WITFF 列表</title>
+
+  <style>
+    :root {
+      --page-width: 840px;
+      --card-radius: 12px;
+      --card-padding: 14px;
+      --accent: #3b82f6;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: #eaf2ff;
+      background-image:
+        linear-gradient(120deg, rgba(241, 249, 255, 0.9), rgba(250, 250, 255, 0.9)),
+        url('background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      box-sizing: border-box;
+      padding: 28px 20px;
+    }
+
+    .container {
+      max-width: var(--page-width);
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 8px 30px rgba(30, 40, 60, 0.10);
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), #6dd3ff);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: 0 6px 18px rgba(59, 130, 246, 0.15);
+      flex-shrink: 0;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 20px;
+      color: #111827;
+    }
+
+    .subtitle {
+      margin-top: 4px;
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    /* Mode hint 样式（放在标题下方） */
+    .mode-hint {
+      margin-top: 8px;
+      padding: 10px 12px;
+      background: linear-gradient(90deg, rgba(59, 130, 246, 0.08), rgba(16, 185, 129, 0.03));
+      border-radius: 10px;
+      font-size: 13px;
+      color: #0f172a;
+      border: 1px solid rgba(59, 130, 246, 0.08);
+    }
+
+    .list {
+      margin-top: 12px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(250, 250, 250, 0.98));
+      border-radius: var(--card-radius);
+      padding: var(--card-padding);
+      box-shadow: 0 6px 18px rgba(12, 18, 30, 0.06);
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      word-break: break-word;
+    }
+
+    .meta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      color: #111827;
+    }
+
+    .title {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .name {
+      font-size: 14px;
+      color: #374151;
+    }
+
+    .small {
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: white;
+      text-align: center;
+    }
+
+    .state-0 {
+      background: #9ca3af;
+    }
+
+    .state-1 {
+      background: #f59e0b;
+    }
+
+    .state-2 {
+      background: #10b981;
+    }
+
+    .state-3 {
+      background: #06b6d4;
+    }
+
+    .state-4 {
+      background: #ef4444;
+    }
+
+    .right {
+      min-width: 160px;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .right .value {
+      font-weight: 700;
+      color: #111827;
+      font-size: 14px;
+    }
+
+    .right .label {
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    footer {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    @media (max-width: 900px) {
+      :root {
+        --page-width: 760px;
+      }
+
+      .right {
+        min-width: 120px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      :root {
+        --page-width: calc(100% - 48px);
+      }
+
+      .card {
+        grid-template-columns: 1fr;
+      }
+
+      .right {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">W</div>
+      <div>
+        <h1>WITFF? — 兽聚列表</h1>
+        <div class="subtitle">第 {{ page_num }} / {{ num_pages }} 页 · 显示最多 {{ activities|length }} 项</div>
+      </div>
+    </header>
+
+    {# mode_hint 由 Python 传入（例如 "当前为 图片发送 模式 · 输入 /兽聚 文字发送 切换到文字模式"） #}
+    <div class="mode-hint">{{ mode_hint or "当前为 图片发送 模式 · 输入 /兽聚 文字发送 切换到文字模式" }}</div>
+
+    <div class="list">
+      {% for item in activities %}
+      <div class="card">
+        <div class="meta">
+          <div class="title">{{ item.title }}</div>
+          <div class="name">{{ item.name }}</div>
+          <div class="small">地址：{{ item.address }}</div>
+          <div class="small">Q 群：{{ item.group }}</div>
+        </div>
+
+        <div class="right">
+          {% set st = item.state %}
+          {% if '结束' in st %}
+          <div class="badge state-0"> {{ st }} </div>
+          {% elif '预告' in st %}
+          <div class="badge state-1"> {{ st }} </div>
+          {% elif '售票' in st %}
+          <div class="badge state-2"> {{ st }} </div>
+          {% elif '活动中' in st %}
+          <div class="badge state-3"> {{ st }} </div>
+          {% elif '取消' in st %}
+          <div class="badge state-4"> {{ st }} </div>
+          {% else %}
+          <div class="badge state-0"> {{ st }} </div>
+          {% endif %}
+
+          <div class="label">举办天数</div>
+          <div class="value">{{ item.time_day }} 天</div>
+
+          <div style="height:6px;"></div>
+
+          <div class="label">举办时间</div>
+          <div class="value">{{ item.time_start }} — {{ item.time_end }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <footer>
+      数据来自: www.furryfusion.net · 请以实际时间为准
+    </footer>
+  </div>
+</body>
+
+</html>
