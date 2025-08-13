@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WITFF 帮助</title>
+    <style>
+        :root {
+            --page-width: 840px;
+            --accent: #3b82f6;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+            background: linear-gradient(120deg, #f0f7ff, #ffffff);
+            padding: 28px 20px;
+        }
+
+        .container {
+            max-width: var(--page-width);
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 20px;
+            color: #0f172a;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            font-size: 12px;
+            margin-top: 6px;
+        }
+
+        .mode-hint {
+            margin-top: 12px;
+            padding: 10px;
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.06), rgba(16, 185, 129, 0.03));
+            border-radius: 8px;
+            font-size: 13px;
+            color: #0f172a;
+        }
+
+        .examples {
+            margin-top: 14px;
+        }
+
+        .examples li {
+            margin: 8px 0;
+            font-size: 14px;
+            color: #0f172a;
+        }
+
+        .footer {
+            margin-top: 14px;
+            font-size: 12px;
+            color: #6b7280;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>WITFF 使用说明</h1>
+        <div class="subtitle">插件命令列表</div>
+        <div class="mode-hint">{{ mode_hint or "默认输出为 图片发送 模式。" }}</div>
+
+        <ul class="examples">
+            {# examples 是一个字符串列表 将会在Pyton导入 #}
+            {% for ex in examples %}
+            <li>{{ ex }}</li>
+            {% endfor %}
+        </ul>
+
+        <div class="footer">数据来源:furryfusion.net · 使用 /兽聚 帮助 获取此图片</div>
+    </div>
+</body>
+
+</html>
